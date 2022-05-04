@@ -1,21 +1,41 @@
 <script>
   //import Quiz from "./components/Quiz.vue";
   import LandingPage from './components/LandingPage.vue'
+  import QuizQs from './components/QuizQs.vue'
+
+  var url = "";
   
   export default {
     //name: "App",
-    components: { LandingPage },
+    components: { LandingPage, QuizQs },
     props: { },
-    data() {
-      return {
-        url: '',
-        questions: []
-      }
-    },
-    mounted() {
-
-    },
+    data: () => ({
+      questionID: 0,
+      questions: null
+    }),
     methods: {
+      async fetchData(url) {
+        this.questions = await (await fetch(url)).json()
+      },
+      initQuiz(category) {
+
+        switch(category) {
+          case 'science':
+            url="https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple";
+            break;
+          case 'geography':
+            url="https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple";
+            break;
+          case 'history':
+            url="https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple";
+            break;
+          default:
+            url;
+            break;
+        }
+
+        this.fetchData(url);
+      }
     }
   };
 
@@ -24,6 +44,7 @@
 <template>
 
   <LandingPage></LandingPage>
+  <QuizQs></QuizQs>
 
 </template>
 
