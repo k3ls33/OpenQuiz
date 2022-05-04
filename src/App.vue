@@ -1,20 +1,10 @@
-<template>
-  <h1>OpenQuiz</h1>
-  <p>Fun and engaging classroom activities, open to all educators.</p>
-  <p>We are still in development. Try some of our current options below.
-    10 randomly selected questions each.
-  </p>
-  <button @click="initQuiz('science')">Science</button>
-  <button @click="initQuiz('geography')">Geography</button>
-  <button @click="initQuiz('history')">History</button>
-</template>
-
 <script>
   //import Quiz from "./components/Quiz.vue";
-
+  import LandingPage from './components/LandingPage.vue'
+  
   export default {
-    name: "App",
-    //components: { Quiz },
+    //name: "App",
+    components: { LandingPage },
     props: { },
     data() {
       return {
@@ -24,37 +14,18 @@
     },
     mounted() {
 
+    },
+    methods: {
     }
   };
-  
-  initQuiz();
-  function initQuiz(category) {
-    switch(category) {
-      case 'science':
-        this.url="https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple";
-        break;
-      case 'geography':
-        this.url="https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple";
-        break;
-      case 'history':
-        this.url="https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple";
-        break;
-      default:
-        this.url;
-        break;
-    }
-    
-    fetch(this.url).then((response) => {
-        return response.json()
-      }).then((questionData) => {
-        this.questions = questionData.response
-      }).catch((error) => {
-        console.log(error)
-    });
-    
-  }
-  
+
 </script>
+
+<template>
+
+  <LandingPage></LandingPage>
+
+</template>
 
 <style>
 body {
@@ -81,5 +52,6 @@ button {
 }
 button:hover {
   background-color: #02013b8e;
+  cursor: pointer;
 }
 </style>
