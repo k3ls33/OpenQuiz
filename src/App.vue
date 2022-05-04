@@ -44,14 +44,19 @@ button {
   border-radius: 15px;
   color:#ffffff;
   margin: 10px;
-  padding: 5px 15px;
+  padding: 10px 15px;
   background-color: transparent;
-  font-size: 17px;
+  font-size: 20px;
   text-decoration: none;
   transition-duration: 0.3s;
 }
 button:hover {
   background-color: #02013b8e;
   cursor: pointer;
+}
+button img {
+  width: 20px;
+  display:inline;
+  padding-right: 10px;
 }
 </style>
