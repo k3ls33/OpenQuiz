@@ -1,54 +1,85 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <button @click="initQuiz('science')"></button>
-  <button @click="initQuiz('geography')"></button>
-  <button @click="initQuiz('history')"></button>
+  <h1>OpenQuiz</h1>
+  <p>Fun and engaging classroom activities, open to all educators.</p>
+  <p>We are still in development. Try some of our current options below.
+    10 randomly selected questions each.
+  </p>
+  <button @click="initQuiz('science')">Science</button>
+  <button @click="initQuiz('geography')">Geography</button>
+  <button @click="initQuiz('history')">History</button>
 </template>
 
 <script>
+  //import Quiz from "./components/Quiz.vue";
+
   export default {
     name: "App",
-    props: { }
+    //components: { Quiz },
+    props: { },
+    data() {
+      return {
+        url: '',
+        questions: []
+      }
+    },
+    mounted() {
+
+    }
   };
   
   initQuiz();
   function initQuiz(category) {
-    var url="";
-
     switch(category) {
       case 'science':
-        url="https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple";
+        this.url="https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple";
         break;
       case 'geography':
-        url="https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple";
+        this.url="https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple";
         break;
       case 'history':
-        url="https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple";
+        this.url="https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple";
         break;
       default:
-        url;
+        this.url;
         break;
     }
     
-    fetch(url).then(function(response) {
-        return response.json();
-      }).catch(function(error) {
-        console.log(error);
-      });
-
+    fetch(this.url).then((response) => {
+        return response.json()
+      }).then((questionData) => {
+        this.questions = questionData.response
+      }).catch((error) => {
+        console.log(error)
+    });
     
   }
   
 </script>
 
 <style>
+body {
+  background-color:#211f94;
+  color: #cacaca;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 50px;
+}
+button {
+  border: 2px solid #02013b;
+  border-radius: 15px;
+  color:#ffffff;
+  margin: 10px;
+  padding: 5px 15px;
+  background-color: transparent;
+  font-size: 17px;
+  text-decoration: none;
+  transition-duration: 0.3s;
+}
+button:hover {
+  background-color: #02013b8e;
 }
 </style>
