@@ -1,26 +1,31 @@
 <script>
-var url = '';
-//import Quiz from "./components/Quiz.vue";
+var url = 'https://opentdb.com/api.php?amount=10';
+import QuizQs from "./components/QuizQs.vue";
 //import LandingPage from './components/LandingPage.vue'
-//import QuizQs from './components/QuizQs.vue'
 
 export default {
   name: "App",
   data: function () {
     return {
-      questions: null,
+      questions: [],
+      category: '',
       index: 0,
-      newQuiz: true
+      newQuiz: true,
+      showHome: 'inline-block',
+      start: false
     }
   },
-  methods: {
-    async fetchData(url) {
-      this.questions = await (await fetch(url)).json();
-    },
-    initQuiz(category) {
+  components: {
+    QuizQs
+  },
+  watch: {
+    category:function(val) {
+      this.start = true;
       this.newQuiz = false;
+      
+      this.category = val;
 
-      switch (category) {
+      switch (this.category) {
         case 'science':
           url = 'https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple';
           break;
@@ -35,7 +40,13 @@ export default {
           break;
       }
 
-      this.fetchData(url);
+      fetch(url, {
+        method: 'get'
+      }).then((response) => {
+        return response.json()
+      }).then((jsonData) => {
+        this.questions = jsonData.results
+      })
     }
   }
 };
@@ -49,17 +60,22 @@ export default {
         <p>We are still in development. Try some of our current options below.
             10 randomly selected questions each.
         </p>
-        <button @click="initQuiz('science')"><img src="./assets/flask.png"/> Science</button>
-        <button @click="initQuiz('geography')"><img src="./assets/globe.png"/> Geography</button>
-        <button @click="initQuiz('history')"><img src="./assets/parchment.png"/> History</button>
+        <button @click="category='science'"><img src="./assets/flask.png"/> Science</button>
+        <button @click="category='geography'"><img src="./assets/globe.png"/> Geography</button>
+        <button @click="category='history'"><img src="./assets/parchment.png"/> History</button>
   </div>
-
-  <div id="quiz">
+<!--   <div v-if="start" id="quiz">
+    <h1>
+    {{ questions[index].question }}
+    </h1>
     <div>
-    {{ questions }}
+      <button>{{ questions[index].correct_answer }}</button>
+      <button v-for="answer in questions[index].incorrect_answers" :key="answer.id">
+        {{ answer }}
+      </button>
     </div>
-    
-  </div>
+  </div> -->
+  <QuizQs :ok="start" :quizData="questions" :i="index"></QuizQs>
 </template>
 
 <style>
@@ -75,7 +91,9 @@ body {
   text-align: center;
   margin-top: 50px;
 }
-
+.hide {
+  display: none;
+}
 button {
   border: 2px solid #02013b;
   border-radius: 15px;
