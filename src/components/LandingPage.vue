@@ -10,7 +10,7 @@
     <div v-show="showHome">
         <h1>OpenQuiz</h1>
         <p>Fun and engaging classroom activities, open to all educators.</p>
-        <p>We are still in development. Try some of our current options below.
+        <p>Try some of our current options below.
             10 randomly selected questions each.
         </p>
         <button @click="category='science'"><img src="../assets/flask.png"/> Science</button>

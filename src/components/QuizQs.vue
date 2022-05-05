@@ -5,32 +5,36 @@ export default {
   data() {
     return {
       buttonColor: 'transparent',
-      incorrectButton: 'transparent'
+      incorrectButton: 'transparent',
+      index: 0
     }
   },
   props: {
     quizData: Array,
     i: Number,
     ok: Boolean
+  },
+  mounted() {
+    this.index = this.i;
   }
 }
 </script>
 
 <template v-show="ok">
   <div id="quiz">
-    <h1> {{ quizData[i].question }} </h1>
+    <h1> {{ quizData[index].question }} </h1>
   
   
   <div>
     <ul>
-    <li><button>{{ quizData[i].correct_answer }}</button></li>
-      <li v-for="answer in quizData[i].incorrect_answers" :key="answer.id">
+    <li><button>{{ quizData[index].correct_answer }}</button></li>
+      <li v-for="answer in quizData[index].incorrect_answers" :key="answer.id">
         <button>{{ answer }}</button>
       </li>
     </ul>
   </div>
 
-  <button>next</button>
+  <button @click="index++">next</button>
   </div>
 </template>
 
