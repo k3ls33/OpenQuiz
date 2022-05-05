@@ -22,13 +22,13 @@ export default {
 
       switch (category) {
         case 'science':
-          url = 'https://opentdb.com/api.php?amount=1&category=17&difficulty=medium&type=multiple';
+          url = 'https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple';
           break;
         case 'geography':
-          url = 'https://opentdb.com/api.php?amount=1&category=22&difficulty=medium&type=multiple';
+          url = 'https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple';
           break;
         case 'history':
-          url = 'https://opentdb.com/api.php?amount=1&category=23&difficulty=medium&type=multiple';
+          url = 'https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple';
           break;
         default:
           url;
