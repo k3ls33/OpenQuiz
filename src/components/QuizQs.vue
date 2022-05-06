@@ -4,8 +4,9 @@ export default {
   name: "QuizQs",
   data() {
     return {
-      correctChoice: false,
-      incorrectChoice: false,
+      showBtns: false,
+      selectedCorrect: false,
+      selectedIncorrect: false,
       index: 0,
       choices: []
     }
@@ -18,16 +19,18 @@ export default {
   methods: {
     checkAnswer: function(e) {
       const btnChoice = e.target.value;
+      this.showBtns = true;
       if (btnChoice == 1) {
-        this.correctChoice = true;
+        this.selectedCorrect = true;
       } else {
-        this.incorrectChoice = true;
+        this.selectedIncorrect = true;
       }
     },
     next: function () {
       this.index++;
-      this.correctChoice = false;
-      this.incorrectChoice = false;
+      this.showBtns = false;
+      this.selectedCorrect = false;
+      this.selectedIncorrect = false;
       this.choices=[];
       this.choices.push([this.quizData[this.index].correct_answer, 1]);
       for (var j = 0; j < 3; j++) {
@@ -46,18 +49,22 @@ export default {
 
 <template v-show="ok">
   <div id="quiz">
-    <h1> {{ quizData[index].question }} </h1>
-  
-  
-  <div>
-    <ul>
-      <li v-for="choice in choices" :key="choice.id">
-        <button id="answerBtn" :class="{ correctBtn: (choice[1] === 1 && correctChoice), incorrectBtn: (choice[1] === 0 && incorrectChoice)}" :value="choice[1]" @click="checkAnswer">{{choice[0]}}</button>
-      </li>
-    </ul>
-  </div>
+    <div id="question"><h1> {{ quizData[index].question }} </h1></div>
 
-  <button @click="next">next</button>
+    <div id="answerContainer">
+      <ul>
+        <li v-for="choice in choices" :key="choice.id">
+          <button id="answerBtn" :class="{ correctBtn: (choice[1] === 1 && showBtns), incorrectBtn: (choice[1] === 0 && showBtns)}" :value="choice[1]" @click="checkAnswer">{{choice[0]}}</button>
+        </li>
+      </ul>
+    </div>
+
+    <div id="results">
+      <div v-show="selectedCorrect"> Correct! </div>
+      <div v-show="selectedIncorrect"> Better luck next time! </div>
+    </div>
+
+    <button @click="next">next</button>
   </div>
 </template>
 
@@ -66,19 +73,37 @@ export default {
     width: 800px;
     margin: auto;
   }
+  #question {
+    height: 100px;
+    margin-top: 30px;
+  }
+  #answerContainer {
+    columns: 400px 2;
+  }
   ul {
     list-style: none;
-    padding:0;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    display: inline-block;
+    width: 400px;
   }
   #answerBtn {
-    width: 500px;
-    margin:5px;
+    width: 390px;
     height: 75px;
+    margin: 5px;
   }
   .correctBtn {
     background-color: #00bb0080;
   }
   .incorrectBtn {
     background-color: #d1000085;
+  }
+  #results {
+    font-size: 18px;
+    height: 40px;
+    width: 800px;
+    padding-top: 20px;
   }
 </style>

@@ -51,7 +51,7 @@ export default {
 
 </script>
 
-<template>
+<template id="app">
   <div v-show="newQuiz">
         <h1>OpenQuiz</h1>
         <p>Fun and engaging classroom activities, open to all educators.</p>
@@ -68,22 +68,24 @@ export default {
 
 <style>
 body {
-  background-color: #211f94;
-  color: #cacaca;
-}
-
-#app {
+  background-color: #191870;
+  color: #ffffff;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin-top: 50px;
 }
+
+#app {
+  text-align: center;
+  margin-top: 30px;
+}
+
 .hideIntro {
   visibility: hidden;
 }
+
 button {
-  border: 2px solid #02013b;
+  border: 2px solid #5e5ce2;
   border-radius: 15px;
   color: #ffffff;
   margin: 10px;
@@ -95,7 +97,7 @@ button {
 }
 
 button:hover {
-  background-color: #02013b8e;
+  background-color: #010049;
   cursor: pointer;
 }
 
