@@ -4,14 +4,13 @@ import QuizQs from "./components/QuizQs.vue";
 //import LandingPage from './components/LandingPage.vue'
 
 export default {
-  name: "App",
+  //name: "App",
   data: function () {
     return {
       questions: [],
       category: '',
       index: 0,
       newQuiz: true,
-      showHome: 'inline-block',
       start: false
     }
   },
@@ -20,11 +19,9 @@ export default {
   },
   watch: {
     category:function(val) {
+      this.category = val;
       this.start = true;
       this.newQuiz = false;
-      
-      this.category = val;
-
       switch (this.category) {
         case 'science':
           url = 'https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple';
@@ -64,17 +61,7 @@ export default {
         <button @click="category='geography'"><img src="./assets/globe.png"/> Geography</button>
         <button @click="category='history'"><img src="./assets/parchment.png"/> History</button>
   </div>
-<!--   <div v-if="start" id="quiz">
-    <h1>
-    {{ questions[index].question }}
-    </h1>
-    <div>
-      <button>{{ questions[index].correct_answer }}</button>
-      <button v-for="answer in questions[index].incorrect_answers" :key="answer.id">
-        {{ answer }}
-      </button>
-    </div>
-  </div> -->
+
   <QuizQs :ok="start" :quizData="questions" :i="index"></QuizQs>
 </template>
 

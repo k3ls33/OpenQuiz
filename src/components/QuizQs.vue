@@ -6,7 +6,8 @@ export default {
     return {
       buttonColor: 'transparent',
       incorrectButton: 'transparent',
-      index: 0
+      index: 0,
+      choices: []
     }
   },
   props: {
@@ -14,8 +15,26 @@ export default {
     i: Number,
     ok: Boolean
   },
+  methods: {
+    checkAnswer: function(value) {
+      if (value == 1) {
+        console.log("hey");
+      }
+    },
+    next: function () {
+      this.index++;
+      this.choices=[];
+      this.choices.push([this.quizData[this.index].correct_answer, 1]);
+      for (var j = 0; j < 3; j++) {
+        this.choices.push([this.quizData[this.index].incorrect_answers[j], 0]);
+      }
+      this.choices.sort(() => Math.random() - 0.5);
+      
+    }
+  },
   mounted() {
     this.index = this.i;
+    this.next();
   }
 }
 </script>
@@ -27,14 +46,13 @@ export default {
   
   <div>
     <ul>
-    <li><button>{{ quizData[index].correct_answer }}</button></li>
-      <li v-for="answer in quizData[index].incorrect_answers" :key="answer.id">
-        <button>{{ answer }}</button>
+      <li v-for="choice in choices" :key="choice.id">
+        <button :value="choice[1]" @click="checkAnswer(value)">{{choice[0]}}</button>
       </li>
     </ul>
   </div>
 
-  <button @click="index++">next</button>
+  <button @click="next">next</button>
   </div>
 </template>
 
