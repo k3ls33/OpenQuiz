@@ -89,6 +89,9 @@ export default {
     display: inline-block;
     width: 400px;
   }
+  button {
+    width: 170px;
+  }
   #answerBtn {
     width: 390px;
     height: 75px;
