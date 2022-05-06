@@ -4,8 +4,8 @@ export default {
   name: "QuizQs",
   data() {
     return {
-      buttonColor: 'transparent',
-      incorrectButton: 'transparent',
+      correctChoice: false,
+      incorrectChoice: false,
       index: 0,
       choices: []
     }
@@ -16,13 +16,18 @@ export default {
     ok: Boolean
   },
   methods: {
-    checkAnswer: function(value) {
-      if (value == 1) {
-        console.log("hey");
+    checkAnswer: function(e) {
+      const btnChoice = e.target.value;
+      if (btnChoice == 1) {
+        this.correctChoice = true;
+      } else {
+        this.incorrectChoice = true;
       }
     },
     next: function () {
       this.index++;
+      this.correctChoice = false;
+      this.incorrectChoice = false;
       this.choices=[];
       this.choices.push([this.quizData[this.index].correct_answer, 1]);
       for (var j = 0; j < 3; j++) {
@@ -47,7 +52,7 @@ export default {
   <div>
     <ul>
       <li v-for="choice in choices" :key="choice.id">
-        <button :value="choice[1]" @click="checkAnswer(value)">{{choice[0]}}</button>
+        <button id="answerBtn" :class="{ correctBtn: (choice[1] === 1 && correctChoice), incorrectBtn: (choice[1] === 0 && incorrectChoice)}" :value="choice[1]" @click="checkAnswer">{{choice[0]}}</button>
       </li>
     </ul>
   </div>
@@ -65,9 +70,15 @@ export default {
     list-style: none;
     padding:0;
   }
-  button {
+  #answerBtn {
     width: 500px;
     margin:5px;
     height: 75px;
+  }
+  .correctBtn {
+    background-color: #00bb0080;
+  }
+  .incorrectBtn {
+    background-color: #d1000085;
   }
 </style>

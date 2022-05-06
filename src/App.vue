@@ -4,7 +4,7 @@ import QuizQs from "./components/QuizQs.vue";
 //import LandingPage from './components/LandingPage.vue'
 
 export default {
-  //name: "App",
+  name: "App",
   data: function () {
     return {
       questions: [],
@@ -22,6 +22,7 @@ export default {
       this.category = val;
       this.start = true;
       this.newQuiz = false;
+
       switch (this.category) {
         case 'science':
           url = 'https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple';
@@ -78,8 +79,8 @@ body {
   text-align: center;
   margin-top: 50px;
 }
-.hide {
-  display: none;
+.hideIntro {
+  visibility: hidden;
 }
 button {
   border: 2px solid #02013b;
