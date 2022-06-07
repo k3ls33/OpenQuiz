@@ -31,7 +31,7 @@ export default {
       this.showBtns = false;
       this.selectedCorrect = false;
       this.selectedIncorrect = false;
-      this.choices=[];
+      //this.choices=[];
       this.choices.push([this.quizData[this.index].correct_answer, 1]);
       for (var j = 0; j < 3; j++) {
         this.choices.push([this.quizData[this.index].incorrect_answers[j], 0]);
