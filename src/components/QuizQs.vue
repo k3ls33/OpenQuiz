@@ -7,8 +7,8 @@ export default {
       showBtns: false,
       selectedCorrect: false,
       selectedIncorrect: false,
-      index: 1,
-      choices: []
+      index: 0
+      //choices: []
     }
   },
   props: {
