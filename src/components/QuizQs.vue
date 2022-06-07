@@ -40,7 +40,7 @@ export default {
       
     }
   },
-  onBeforeMount() {
+  onBeforeUpdate() {
     this.index = this.i;
     this.next;
   }
