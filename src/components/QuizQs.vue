@@ -42,7 +42,7 @@ export default {
   },
   mounted() {
     //this.index = this.i;
-    this.next();
+    this.next;
   }
 }
 </script>
