@@ -40,7 +40,7 @@ export default {
       
     }
   },
-  mounted() {
+  created() {
     this.index = this.i;
     this.next();
   }
