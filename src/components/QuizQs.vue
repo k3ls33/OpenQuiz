@@ -40,9 +40,9 @@ export default {
       
     }
   },
-  onBeforeMounted() {
+  mounted() {
     this.index = this.i;
-    this.next;
+    this.next();
   }
 }
 </script>
