@@ -7,7 +7,7 @@ export default {
       showBtns: false,
       selectedCorrect: false,
       selectedIncorrect: false,
-      index: 0,
+      index: 1,
       choices: []
     }
   },
