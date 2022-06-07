@@ -20,7 +20,6 @@ export default {
   watch: {
     category:function(val) {
       this.category = val;
-      this.start = true;
       this.newQuiz = false;
 
       switch (this.category) {
@@ -45,6 +44,8 @@ export default {
       }).then((jsonData) => {
         this.questions = jsonData.results
       })
+
+      this.start = true;
     }
   }
 };
