@@ -7,7 +7,7 @@ export default {
       showBtns: false,
       selectedCorrect: false,
       selectedIncorrect: false,
-      index: 1,
+      index: 0,
       choices: []
     }
   },
@@ -26,7 +26,7 @@ export default {
         this.selectedIncorrect = true;
       }
     },
-    next: function() {
+    next: function () {
       this.index++;
       this.showBtns = false;
       this.selectedCorrect = false;
@@ -40,8 +40,8 @@ export default {
       
     }
   },
-  beforeCreate() {
-    this.index = this.i;
+  mounted() {
+    //this.index = this.i;
     this.next();
   }
 }
