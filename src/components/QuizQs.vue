@@ -41,8 +41,9 @@ export default {
     }
   },
   mounted() {
-    this.index = this.i;
     this.next();
+    this.index = this.i;
+    //this.next();
   }
 }
 </script>
