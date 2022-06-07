@@ -2,6 +2,10 @@
 
 export default {
   name: "QuizQs",
+  setup() {
+    this.index = this.i;
+    this.next;
+  },
   data() {
     return {
       showBtns: false,
@@ -39,10 +43,6 @@ export default {
       this.choices.sort(() => Math.random() - 0.5);
       
     }
-  },
-  mounted() {
-    this.index = this.i;
-    this.next();
   }
 }
 </script>
