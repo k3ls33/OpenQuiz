@@ -21,6 +21,7 @@ export default {
     checkAnswer: function(e) {
       const btnChoice = e.target.value;
       this.showBtns = true;
+
       if (btnChoice == 1) {
         this.selectedCorrect = true;
       } else {
@@ -28,7 +29,6 @@ export default {
       }
     },
     next() {
-      this.index++;
       this.showBtns = false;
       this.selectedCorrect = false;
       this.selectedIncorrect = false;
@@ -40,11 +40,17 @@ export default {
         this.choices.push([this.quizData[this.index].incorrect_answers[j], 0]);
       }
       this.choices.sort(() => Math.random() - 0.5);
+
+      //this.index++;
+    },
+    goNext() {
+      this.index++;
+      this.next();
     }
   },
   beforeUpdate() {
     //this.index = this.i;
-    this.next();
+    //this.next();
   }
 }
 </script>
@@ -66,7 +72,7 @@ export default {
       <div v-show="selectedIncorrect"> Better luck next time! </div>
     </div>
 
-    <button @click="next()">next</button>
+    <button @click="goNext()">next</button>
   </div>
 </template>
 
