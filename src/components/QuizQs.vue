@@ -1,5 +1,4 @@
 <script>
-
 export default {
   name: "QuizQs",
   data() {
@@ -28,7 +27,7 @@ export default {
         this.selectedIncorrect = true;
       }
     },
-    next: function () {
+    next() {
       this.index++;
       this.showBtns = false;
       this.selectedCorrect = false;
@@ -43,15 +42,14 @@ export default {
       this.choices.sort(() => Math.random() - 0.5);
     }
   },
-  beforeCreate() {
+  created() {
     this.index = this.i;
-    this.next;
-    //this.startQuiz = this.ok;
+    this.next();
   }
 }
 </script>
 
-<template>
+<template v-show="ok">
   <div id="quiz">
     <div id="question"><h1> {{ ques }} </h1></div>
 
@@ -68,7 +66,7 @@ export default {
       <div v-show="selectedIncorrect"> Better luck next time! </div>
     </div>
 
-    <button @click="next">next</button>
+    <button @click="next()">next</button>
   </div>
 </template>
 
