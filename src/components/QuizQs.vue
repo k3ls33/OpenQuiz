@@ -2,17 +2,14 @@
 
 export default {
   name: "QuizQs",
-  setup() {
-    this.index = this.i;
-    this.next;
-  },
   data() {
     return {
       showBtns: false,
       selectedCorrect: false,
       selectedIncorrect: false,
       index: 0,
-      choices: []
+      choices: [],
+      ques: ''
     }
   },
   props: {
@@ -35,21 +32,26 @@ export default {
       this.showBtns = false;
       this.selectedCorrect = false;
       this.selectedIncorrect = false;
+      this.ques = this.quizData[this.index].question;
+
       this.choices=[];
       this.choices.push([this.quizData[this.index].correct_answer, 1]);
       for (var j = 0; j < 3; j++) {
         this.choices.push([this.quizData[this.index].incorrect_answers[j], 0]);
       }
       this.choices.sort(() => Math.random() - 0.5);
-      
     }
+  },
+  beforeMount() {
+    this.index = this.i;
+    this.next;
   }
 }
 </script>
 
 <template v-show="ok">
   <div id="quiz">
-    <div id="question"><h1> {{ quizData[index].question }} </h1></div>
+    <div id="question"><h1> {{ ques }} </h1></div>
 
     <div id="answerContainer">
       <ul>
