@@ -40,8 +40,6 @@ export default {
         this.choices.push([this.quizData[this.index].incorrect_answers[j], 0]);
       }
       this.choices.sort(() => Math.random() - 0.5);
-
-      //this.index++;
     },
     goNext() {
       this.index++;
@@ -50,7 +48,7 @@ export default {
   },
   beforeUpdate() {
     //this.index = this.i;
-    //this.next();
+    this.next();
   }
 }
 </script>
