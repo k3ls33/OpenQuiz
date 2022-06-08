@@ -4,7 +4,7 @@ import QuizQs from "./components/QuizQs.vue";
 //import LandingPage from './components/LandingPage.vue'
 
 export default {
-  name: "App",
+  name: 'App',
   data: function () {
     return {
       questions: [],
@@ -25,6 +25,7 @@ export default {
       switch (this.category) {
         case 'science':
           url = 'https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple';
+          this.start = true;
           break;
         case 'geography':
           url = 'https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple';
@@ -45,15 +46,14 @@ export default {
         this.questions = jsonData.results
       })
 
-      this.start = true;
+      //this.start = true;
     }
   }
 };
-
 </script>
 
 <template id="app">
-  <div v-show="newQuiz">
+  <div>
         <h1>OpenQuiz</h1>
         <p>Fun and engaging classroom activities, open to all educators.</p>
         <p>Try some of our current options below.

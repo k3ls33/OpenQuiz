@@ -42,15 +42,15 @@ export default {
       this.choices.sort(() => Math.random() - 0.5);
     }
   },
-  created() {
-    this.index = this.i;
+  beforeUpdate() {
+    //this.index = this.i;
     this.next();
   }
 }
 </script>
 
-<template v-show="ok">
-  <div id="quiz">
+<template>
+  <div id="quiz" v-if="ok">
     <div id="question"><h1> {{ ques }} </h1></div>
 
     <div id="answerContainer">
