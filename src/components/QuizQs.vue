@@ -45,31 +45,33 @@ export default {
       this.index++;
       this.next();
     }
-  },
-  beforeMount() {
-    this.index++;
-    this.next();
   }
 }
 </script>
 
 <template>
-  <div id="quiz" v-if="ok">
-    <div id="question"><h1> {{ ques }} </h1></div>
+  <div id="quiz">
+    <div v-if="ques.length">
+      <div id="question"><h1> {{ ques }} </h1></div>
 
-    <div id="answerContainer">
-      <ul>
-        <li v-for="choice in choices" :key="choice.id">
-          <button id="answerBtn" :class="{ correctBtn: (choice[1] === 1 && showBtns), incorrectBtn: (choice[1] === 0 && showBtns)}" :value="choice[1]" @click="checkAnswer">{{choice[0]}}</button>
-        </li>
-      </ul>
+      <div id="answerContainer">
+        <ul>
+          <li v-for="choice in choices" :key="choice.id">
+            <button id="answerBtn" :class="{ correctBtn: (choice[1] === 1 && showBtns), incorrectBtn: (choice[1] === 0 && showBtns)}" :value="choice[1]" @click="checkAnswer">{{choice[0]}}</button>
+          </li>
+        </ul>
+      </div>
+
+      <div id="results">
+        <div v-show="selectedCorrect"> Correct! </div>
+        <div v-show="selectedIncorrect"> Better luck next time! </div>
+      </div>
     </div>
-
-    <div id="results">
-      <div v-show="selectedCorrect"> Correct! </div>
-      <div v-show="selectedIncorrect"> Better luck next time! </div>
+    
+    <div v-else>
+      Ready?
     </div>
-
+    
     <button @click="goNext()">next</button>
   </div>
 </template>

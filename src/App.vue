@@ -64,7 +64,7 @@ export default {
         <button @click="category='history'"><img src="./assets/parchment.png"/> History</button>
   </div>
 
-  <QuizQs :ok="start" :quizData="questions" :i="index"></QuizQs>
+  <QuizQs v-if="start" :ok="start" :quizData="questions" :i="index"></QuizQs>
 </template>
 
 <style>
