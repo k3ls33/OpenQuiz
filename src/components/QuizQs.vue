@@ -54,7 +54,7 @@ export default {
 </script>
 
 <template>
-  <div id="quiz">
+  <div id="quiz" v-if="ok">
     <div id="question"><h1> {{ ques }} </h1></div>
 
     <div id="answerContainer">
