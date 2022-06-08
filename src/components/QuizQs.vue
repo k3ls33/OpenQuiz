@@ -47,7 +47,7 @@ export default {
     }
   },
   beforeMount() {
-    //this.index = this.i;
+    this.index++;
     this.next();
   }
 }
