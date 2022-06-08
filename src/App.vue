@@ -46,14 +46,14 @@ export default {
         this.questions = jsonData.results
       })
 
-      //this.start = true;
+      this.start = true;
     }
   }
 };
 </script>
 
 <template id="app">
-  <div>
+  <div v-if="!start">
         <h1>OpenQuiz</h1>
         <p>Fun and engaging classroom activities, open to all educators.</p>
         <p>Try some of our current options below.
