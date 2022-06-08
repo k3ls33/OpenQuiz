@@ -43,7 +43,7 @@ export default {
     },
     goNext() {
       this.index++;
-      this.next();
+      //this.next();
     }
   },
   beforeUpdate() {
