@@ -7,6 +7,7 @@ export default {
       showBtns: false,
       selectedCorrect: false,
       selectedIncorrect: false,
+      startQuiz: false,
       index: 0,
       choices: [],
       ques: ''
@@ -42,14 +43,15 @@ export default {
       this.choices.sort(() => Math.random() - 0.5);
     }
   },
-  beforeMount() {
+  beforeCreate() {
     this.index = this.i;
     this.next;
+    //this.startQuiz = this.ok;
   }
 }
 </script>
 
-<template v-show="ok">
+<template>
   <div id="quiz">
     <div id="question"><h1> {{ ques }} </h1></div>
 
