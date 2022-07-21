@@ -27,6 +27,12 @@ export default {
         case 'history':
           url = 'https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple';
           break;
+        case 'animals':
+          url = 'https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=multiple';
+          break;
+        case 'mythology':
+          url = 'https://opentdb.com/api.php?amount=10&category=20&type=multiple';
+          break;
         default:
           url;
           break;

@@ -9,7 +9,7 @@ export default {
 };
 </script>
 
-<template>
+<template id="home">
   <div>
     <div>
       <h1>OpenQuiz</h1>
@@ -22,48 +22,48 @@ export default {
     <div>
       <router-link to="/quiz/science">
         <button>
-          <img src="../assets/test-tube.png" />Science
+          <img src="../assets/test-tube.png" />Science & Nature
         </button>
       </router-link>
 
-      <button @click="category='geography'">
-        <img src="../assets/earth-planet.png" />Geography
-      </button>
+      <router-link to="/quiz/geography">
+        <button>
+          <img src="../assets/earth-planet.png" />Geography
+        </button>
+      </router-link>
 
-      <button @click="category='history'">
-        <img src="../assets/chichen-itza.png" />History
-      </button>
+      <router-link to="/quiz/history">
+        <button>
+          <img src="../assets/chichen-itza.png" />History
+        </button>
+      </router-link>
+
+      <router-link to="/quiz/animals">
+        <button>
+          <img src="../assets/doge.png" />Animals
+        </button>
+      </router-link>
+
+      <router-link to="/quiz/mythology">
+        <button>
+          <img src="../assets/anubis.png" />Mythology
+        </button>
+      </router-link>
     </div>
 
     <div class="footer">
     <a target="_blank" href="https://icons8.com/icon/CIP68rnmhjLL/test-tube">Test Tube</a>,
     <a target="_blank" href="https://icons8.com/icon/v65sQ1D5r9Q2/earth-planet">Earth Planet</a>,
+    <a target="_blank" href="https://icons8.com/icon/h51PZi23TuuW/chichen-itza">Chichen Itza</a>,
+    <a target="_blank" href="https://icons8.com/icon/XF1f9oTOPWEa/doge">Doge</a>,
      and
-    <a target="_blank" href="https://icons8.com/icon/h51PZi23TuuW/chichen-itza">Chichen Itza</a>
+    <a target="_blank" href="https://icons8.com/icon/8Lrfs7noG5QX/anubis">Anubis</a>
      icons by <a target="_blank" href="https://icons8.com">Icons8</a>
     </div>
   </div>
 </template>
 
 <style>
-body {
-  background-color: #191870;
-  color: #ffffff;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#app {
-  text-align: center;
-  margin-top: 30px;
-  width: 100%;
-  font-size: 18px;
-}
-
-.hideIntro {
-  visibility: hidden;
-}
 
 button {
   border: 2px solid #5e5ce2;

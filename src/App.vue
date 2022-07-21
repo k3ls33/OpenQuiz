@@ -19,10 +19,30 @@
 
     Icons by Icons8. See links in footer.
 -->
-<template>
+<template id="app">
 <!--   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav> -->
   <router-view/>
 </template>
+
+<style>
+  body {
+    margin: 0px;
+    width: 100%;
+    background-color: #191870;
+    color: #ffffff;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  #app {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 18px;
+    padding-right: 100px;
+    padding-left: 100px;
+  }
+</style>
