@@ -1,4 +1,6 @@
 <script>
+//import QuizNav from './QuizNav.vue';
+
 export default {
   name: 'QuizQs',
   data() {
@@ -6,13 +8,18 @@ export default {
       selectedCorrect: false,
       selectedIncorrect: false,
       startQuiz: false,
+      checked: false,
       index: 0,
+      score: 0,
       choices: [],
       ques: ''
     }
   },
   props: {
     quizData: Array,
+  },
+  components: {
+    //QuizNav
   },
   created() {
     this.next();
@@ -22,11 +29,15 @@ export default {
       const btnChoice = e.target.value;
       this.showBtns = true;
 
-      if (btnChoice == 1) {
-        this.selectedCorrect = true;
-      } else {
-        this.selectedIncorrect = true;
+      if (this.checked == false) {
+        if (btnChoice == 1) {
+          this.selectedCorrect = true;
+          this.score += 1;     
+        } else {
+          this.selectedIncorrect = true;
+        }
       }
+      this.checked = true;
     },
     next() {
       this.showBtns = false;
@@ -40,16 +51,18 @@ export default {
         this.choices.push([this.quizData[this.index].incorrect_answers[j], 0]);
       }
       this.choices.sort(() => Math.random() - 0.5);
+      this.checked = false;
     },
     goNext() {
-      this.next();
       this.index++;
+      this.next();
     }
   }
 }
 </script>
 
 <template>
+  <!-- <QuizNav :score="score"></QuizNav> -->
   <div id="quiz">
     <div>
       <div id="question"><h2> {{ ques }} </h2></div>
