@@ -1,26 +1,8 @@
-<!--
-    OpenQuiz
-    Copyright (C) 2022 Kelsey Lohr
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
 <script>
 export default {
-  name: "QuizQs",
+  name: 'QuizQs',
   data() {
     return {
-      showBtns: false,
       selectedCorrect: false,
       selectedIncorrect: false,
       startQuiz: false,
@@ -31,8 +13,9 @@ export default {
   },
   props: {
     quizData: Array,
-    i: Number,
-    ok: Boolean
+  },
+  created() {
+    this.next();
   },
   methods: {
     checkAnswer: function(e) {
@@ -68,7 +51,7 @@ export default {
 
 <template>
   <div id="quiz">
-    <div v-if="ques.length">
+    <div>
       <div id="question"><h2> {{ ques }} </h2></div>
 
       <div id="answerContainer">
@@ -83,10 +66,6 @@ export default {
         <div v-show="selectedCorrect"> Correct! </div>
         <div v-show="selectedIncorrect"> Better luck next time! </div>
       </div>
-    </div>
-    
-    <div v-else>
-      <h2>Ready?</h2>
     </div>
     
     <button @click="goNext()">next</button>
