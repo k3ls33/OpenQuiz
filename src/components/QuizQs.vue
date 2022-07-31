@@ -87,7 +87,7 @@ export default {
 
 <style scoped>
   #quiz {
-    width: 800px;
+    width: 900px;
     margin: auto;
   }
   #question {
@@ -95,7 +95,7 @@ export default {
     margin-top: 30px;
   }
   #answerContainer {
-    columns: 400px 2;
+    columns: 450px 2;
   }
   ul {
     list-style: none;
@@ -122,8 +122,8 @@ export default {
   }
   #results {
     font-size: 18px;
-    height: 40px;
-    width: 800px;
-    padding-top: 20px;
+    height: 50px;
+    width: 900px;
+    padding-top: 25px;
   }
 </style>
