@@ -37,14 +37,17 @@ export default {
           url;
           break;
       }
-    
-    fetch(url, {
-        method: 'get'
-      }).then((response) => {
-        return response.json()
-      }).then((jsonData) => {
-        this.questions = jsonData.results;
-        this.loading = false;
+      
+      fetch(url).then((response) => {
+        if (response.status !== 200) {
+          console.log('Error ' + response.status);
+          return;
+        }
+        
+        response.json().then((data) => {
+          this.questions = data.results;
+          this.loading = false;
+        });
       });
   }
 };

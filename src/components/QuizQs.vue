@@ -1,5 +1,5 @@
 <script>
-//import QuizNav from './QuizNav.vue';
+import QuizNav from './QuizNav.vue';
 
 export default {
   name: 'QuizQs',
@@ -7,19 +7,22 @@ export default {
     return {
       selectedCorrect: false,
       selectedIncorrect: false,
-      startQuiz: false,
       checked: false,
+      fontsize: '18px',
       index: 0,
       score: 0,
       choices: [],
-      ques: ''
+      ques: {
+        type: String
+      },
+      nextBtn: 'Next'
     }
   },
   props: {
     quizData: Array,
   },
   components: {
-    //QuizNav
+    QuizNav
   },
   created() {
     this.next();
@@ -43,7 +46,22 @@ export default {
       this.showBtns = false;
       this.selectedCorrect = false;
       this.selectedIncorrect = false;
-      this.ques = this.quizData[this.index].question;
+
+      let str = (this.quizData[this.index].question)
+        .replace(/&quot;/g, '\"')
+        .replace(/&#039;/g, "'")
+        .replace(/&amp;/g, '&')
+        .replace(/&oacute;/g, 'ó')
+        .replace(/&pound;/g, '£')
+        .replace(/&aacute;/g, 'á')
+        .replace(/&Aacute;/g, 'Á')
+        .replace(/&ntilde;/g, 'ñ');
+      
+      this.ques = str;
+
+      if (this.ques.length > 140) {
+        this.fontsize = "16px";
+      }
 
       this.choices=[];
       this.choices.push([this.quizData[this.index].correct_answer, 1]);
@@ -54,20 +72,28 @@ export default {
       this.checked = false;
     },
     goNext() {
-      this.index++;
-      this.next();
+      if ((this.index + 1) !== 10) {
+        this.index++;
+        this.next();
+
+        if ((this.index) == 9) {
+          this.nextBtn = "Finish Quiz";
+        }
+      } else {
+        console.log("finish");
+        this.$router.replace({ path: '/' });
+      }
     }
   }
 }
 </script>
 
 <template>
-  <!-- <QuizNav :score="score"></QuizNav> -->
+  <QuizNav :score="score" :index="index"></QuizNav>
   <div id="quiz">
-    <div>
       <div id="question"><h2> {{ ques }} </h2></div>
 
-      <div id="answerContainer">
+      <div id="optionsContainer">
         <ul>
           <li v-for="choice in choices" :key="choice.id">
             <button id="answerBtn" :class="{ correctBtn: (choice[1] === 1 && showBtns), incorrectBtn: (choice[1] === 0 && showBtns)}" :value="choice[1]" @click="checkAnswer">{{choice[0]}}</button>
@@ -79,40 +105,47 @@ export default {
         <div v-show="selectedCorrect"> Correct! </div>
         <div v-show="selectedIncorrect"> Better luck next time! </div>
       </div>
-    </div>
-    
-    <button @click="goNext()">next</button>
+
+      <button id="next" v-show="checked" @click="goNext()">{{ nextBtn }}</button>
   </div>
 </template>
 
 <style scoped>
   #quiz {
-    width: 900px;
+    width: 800px;
     margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
   }
   #question {
-    height: 100px;
-    margin-top: 30px;
+    height: 150px;
+    width: 780px;
+    margin: auto;
+    font-size: v-bind(fontsize);
   }
-  #answerContainer {
-    columns: 450px 2;
+  #optionsContainer {
+    column-count: 2;
+    column-gap: 0px;
   }
   ul {
-    list-style: none;
+    list-style-type: none;
+    padding:0;
+    margin:0;
+  }
+  ul li {
+    display: inline-block;
     padding: 0;
     margin: 0;
   }
-  li {
-    display: inline-block;
-    width: 400px;
-  }
-  button {
+  #next {
     width: 170px;
+    margin: auto;
   }
   #answerBtn {
-    width: 390px;
-    height: 75px;
-    margin: 5px;
+    font-size: 18px;
+    height: 80px;
+    width: 380px;
   }
   .correctBtn {
     background-color: #00bb0080;
@@ -122,8 +155,9 @@ export default {
   }
   #results {
     font-size: 18px;
-    height: 50px;
-    width: 900px;
-    padding-top: 25px;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    margin: auto;
+    width: 780px;
   }
 </style>

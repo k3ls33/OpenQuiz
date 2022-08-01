@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template id="home">
-  <div>
+  <div id="container">
     <div>
       <h1>OpenQuiz</h1>
       <p>Fun and engaging classroom activities, open to all educators.</p>
@@ -19,7 +19,7 @@ export default {
       </p>
     </div>
 
-    <div>
+    <div id="subjects">
       <router-link to="/quiz/science">
         <button>
           <img src="../assets/test-tube.png" />Science & Nature
@@ -64,6 +64,16 @@ export default {
 </template>
 
 <style>
+
+#container {
+  text-align: center;
+  margin: auto;
+}
+
+#subjects {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 
 button {
   border: 2px solid #5e5ce2;
