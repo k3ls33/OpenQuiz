@@ -49,13 +49,28 @@ export default {
 
       let str = (this.quizData[this.index].question)
         .replace(/&quot;/g, '\"')
-        .replace(/&#039;/g, "'")
+        .replace(/&#039;/g, "\u0027")
         .replace(/&amp;/g, '&')
         .replace(/&oacute;/g, 'ó')
+        .replace(/&oslash;/g, 'ø')
         .replace(/&pound;/g, '£')
         .replace(/&aacute;/g, 'á')
         .replace(/&Aacute;/g, 'Á')
-        .replace(/&ntilde;/g, 'ñ');
+        .replace(/&auml;/g, 'ä')
+        .replace(/&Auml;/g, 'Ä')
+        .replace(/&eacute;/g, 'é')
+        .replace(/&Eacute;/g, 'É')
+        .replace(/&ecaron;/g, 'ě')
+        .replace(/&Ecaron;/g, 'Ě')
+        .replace(/&euml;/g, 'ë')
+        .replace(/&Euml;/g, 'Ë')
+        .replace(/&ntilde;/g, 'ñ')
+        .replace(/&ocirc;/g, 'ô')
+        .replace(/&otilde;/g, 'õ')
+        .replace(/&ouml;/g, 'ö')
+        .replace(/&Ouml;/g, 'Ö')
+        .replace(/&uuml;/g, 'ü')
+        .replace(/&Uuml;/g, 'Ü');
       
       this.ques = str;
 
