@@ -1,6 +1,6 @@
 <!--
     OpenQuiz
-    Copyright (C) 2022 Kelsey Lohr
+    Copyright (C) 2022
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,12 +19,12 @@
 
     Icons by Icons8. See links in footer.
 -->
-<template id="app">
-<!--   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav> -->
-  <router-view/>
+<script setup>
+import { RouterView } from 'vue-router'
+</script>
+
+<template>
+  <RouterView />
 </template>
 
 <style>
@@ -36,13 +36,5 @@
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  
-  #app {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 18px;
-    padding-right: 100px;
-    padding-left: 100px;
   }
 </style>

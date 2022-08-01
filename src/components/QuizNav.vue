@@ -2,7 +2,8 @@
 export default {
   name: 'QuizNav',
   props: {
-    score: Number
+    score: Number,
+    index: Number
   },
   methods: {
 
@@ -12,12 +13,18 @@ export default {
 
 <template>
   <nav>
-    {{ score }}
+    <div id="qCount">Question {{ index+1 }} / 10</div><div id="score">Correct Answers: {{ score }}</div>
   </nav>
 </template>
 
-<style scoped>
+<style>
   nav {
-    width: 100%;
+    width: 800px;
+    margin: auto;
+    display: flex;
+    font-size: 20px;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
   }
 </style>
