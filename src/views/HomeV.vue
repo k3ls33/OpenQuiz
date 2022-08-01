@@ -22,31 +22,31 @@ export default {
     <div id="subjects">
       <router-link to="/quiz/science">
         <button>
-          <img src="../assets/test-tube.png" />Science & Nature
+          <img src="../assets/test-tube.png" alt="Test Tube Icon"/>Science & Nature
         </button>
       </router-link>
 
       <router-link to="/quiz/geography">
         <button>
-          <img src="../assets/earth-planet.png" />Geography
+          <img src="../assets/earth-planet.png" alt="Earth Planet Icon"/>Geography
         </button>
       </router-link>
 
       <router-link to="/quiz/history">
         <button>
-          <img src="../assets/chichen-itza.png" />History
+          <img src="../assets/chichen-itza.png" alt="Chichen Itza Icon"/>History
         </button>
       </router-link>
 
       <router-link to="/quiz/animals">
         <button>
-          <img src="../assets/doge.png" />Animals
+          <img src="../assets/doge.png" alt="Dog (Doge) Icon"/>Animals
         </button>
       </router-link>
 
       <router-link to="/quiz/mythology">
         <button>
-          <img src="../assets/anubis.png" />Mythology
+          <img src="../assets/anubis.png" alt="Anubis Icon"/>Mythology
         </button>
       </router-link>
     </div>
