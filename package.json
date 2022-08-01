@@ -16,5 +16,5 @@
   },
   "main": "vite.config.js",
   "author": "k3ls33",
-  "license": "BSD-2-Clause"
+  "license": "GPL-3.0"
 }
