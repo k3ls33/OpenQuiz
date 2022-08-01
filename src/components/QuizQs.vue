@@ -15,8 +15,6 @@ export default {
       ques: {
         type: String
       },
-      initial: String,
-      scrubbed: String,
       nextBtn: 'Next',
       results: String
     }
@@ -51,32 +49,27 @@ export default {
       this.showBtns = false;
       this.selectedCorrect = false;
 
-      this.initial = this.quizData[this.index].question;
-      this.janitor();
-
-      this.ques = this.scrubbed;
+      this.ques = this.janitor(this.quizData[this.index].question);
 
       if (this.ques.length > 140) {
         this.fontsize = "16px";
       }
 
       this.choices=[];
-      this.inital = this.quizData[this.index].correct_answer;
-      this.janitor();
+      let scrubbedChoice = this.janitor(this.quizData[this.index].correct_answer);
 
-      this.choices.push([this.scrubbed, 1]);
+      this.choices.push([scrubbedChoice, 1]);
 
       for (var j = 0; j < 3; j++) {
-        this.initial = this.quizData[this.index].incorrect_answers[j];
-        this.janitor();
-        this.choices.push([this.scrubbed, 0]);
+        let scrubbedIncorrect = this.janitor(this.quizData[this.index].incorrect_answers[j]);
+        this.choices.push([scrubbedIncorrect, 0]);
       }
 
       this.choices.sort(() => Math.random() - 0.5);
       this.checked = false;
     },
-    janitor() {
-      this.scrubbed = this.initial.replace(/&quot;/g, '\"')
+    janitor(str) {
+      let scrubbed = str.replace(/&quot;/g, '\"')
         .replace(/&#039;/g, '\u0027')
         .replace(/&amp;/g, '&')
         .replace(/&oacute;/g, 'ó')
@@ -102,6 +95,8 @@ export default {
         .replace(/&Ouml;/g, 'Ö')
         .replace(/&uuml;/g, 'ü')
         .replace(/&Uuml;/g, 'Ü');
+      
+      return scrubbed;
     },
     goNext() {
       if ((this.index + 1) !== 10) {
