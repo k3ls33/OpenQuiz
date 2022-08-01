@@ -19,12 +19,14 @@ export default {
 
 <style>
   nav {
-    width: 800px;
+    max-width: 800px;
     margin: auto;
+    padding: 5px;
+    padding-top: 20px;
     display: flex;
     font-size: 20px;
     justify-content: space-between;
-    height: 60px;
+    height: 40px;
     align-items: center;
   }
 </style>
