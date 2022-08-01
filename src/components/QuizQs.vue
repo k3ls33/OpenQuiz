@@ -15,7 +15,10 @@ export default {
       ques: {
         type: String
       },
-      nextBtn: 'Next'
+      initial: String,
+      scrubbed: String,
+      nextBtn: 'Next',
+      results: String
     }
   },
   props: {
@@ -35,9 +38,11 @@ export default {
       if (this.checked == false) {
         if (btnChoice == 1) {
           this.selectedCorrect = true;
-          this.score += 1;     
+          this.score += 1;
+          this.results = "Correct!";
         } else {
-          this.selectedIncorrect = true;
+          this.selectedCorrect = false;
+          this.results = "Better luck next time!";
         }
       }
       this.checked = true;
@@ -45,17 +50,39 @@ export default {
     next() {
       this.showBtns = false;
       this.selectedCorrect = false;
-      this.selectedIncorrect = false;
 
-      let str = (this.quizData[this.index].question)
-        .replace(/&quot;/g, '\"')
-        .replace(/&#039;/g, "\u0027")
+      this.initial = this.quizData[this.index].question;
+      this.janitor();
+
+      this.ques = this.scrubbed;
+
+      if (this.ques.length > 140) {
+        this.fontsize = "16px";
+      }
+
+      this.choices=[];
+      this.inital = this.quizData[this.index].correct_answer;
+      this.choices.push([this.quizData[this.index].correct_answer, 1]);
+
+      for (var j = 0; j < 3; j++) {
+        this.initial = this.quizData[this.index].incorrect_answers[j];
+        this.janitor();
+        this.choices.push([this.scrubbed, 0]);
+      }
+
+      this.choices.sort(() => Math.random() - 0.5);
+      this.checked = false;
+    },
+    janitor() {
+      this.scrubbed = this.initial.replace(/&quot;/g, '\"')
+        .replace(/&#039;/g, '\u0027')
         .replace(/&amp;/g, '&')
         .replace(/&oacute;/g, 'ó')
         .replace(/&oslash;/g, 'ø')
         .replace(/&pound;/g, '£')
         .replace(/&aacute;/g, 'á')
         .replace(/&Aacute;/g, 'Á')
+        .replace(/&atilde;/g, 'ã')
         .replace(/&auml;/g, 'ä')
         .replace(/&Auml;/g, 'Ä')
         .replace(/&eacute;/g, 'é')
@@ -64,27 +91,15 @@ export default {
         .replace(/&Ecaron;/g, 'Ě')
         .replace(/&euml;/g, 'ë')
         .replace(/&Euml;/g, 'Ë')
+        .replace(/&iacute;/g, 'í')
         .replace(/&ntilde;/g, 'ñ')
+        .replace(/&oacute;/g, 'ó')
         .replace(/&ocirc;/g, 'ô')
         .replace(/&otilde;/g, 'õ')
         .replace(/&ouml;/g, 'ö')
         .replace(/&Ouml;/g, 'Ö')
         .replace(/&uuml;/g, 'ü')
         .replace(/&Uuml;/g, 'Ü');
-      
-      this.ques = str;
-
-      if (this.ques.length > 140) {
-        this.fontsize = "16px";
-      }
-
-      this.choices=[];
-      this.choices.push([this.quizData[this.index].correct_answer, 1]);
-      for (var j = 0; j < 3; j++) {
-        this.choices.push([this.quizData[this.index].incorrect_answers[j], 0]);
-      }
-      this.choices.sort(() => Math.random() - 0.5);
-      this.checked = false;
     },
     goNext() {
       if ((this.index + 1) !== 10) {
@@ -116,18 +131,17 @@ export default {
         </ul>
       </div>
 
-      <div id="results">
-        <div v-show="selectedCorrect"> Correct! </div>
-        <div v-show="selectedIncorrect"> Better luck next time! </div>
+      <div id="results" v-show="checked">
+        <div></div>
+        <div id="res-text"> {{ results }} </div>
+        <div><button id="next" @click="goNext()">{{ nextBtn }}</button></div>
       </div>
-
-      <button id="next" v-show="checked" @click="goNext()">{{ nextBtn }}</button>
   </div>
 </template>
 
 <style scoped>
   #quiz {
-    width: 800px;
+    max-width: 800px;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
@@ -135,44 +149,50 @@ export default {
   }
   #question {
     height: 150px;
-    width: 780px;
     margin: auto;
     font-size: v-bind(fontsize);
+    display:flex;
+    align-items: center;
   }
   #optionsContainer {
+    width: 100%;
     column-count: 2;
     column-gap: 0px;
   }
   ul {
     list-style-type: none;
-    padding:0;
-    margin:0;
-  }
-  ul li {
-    display: inline-block;
     padding: 0;
     margin: 0;
+    display: block;
+  }
+  ul li {
+    padding: 5px;
+  }
+  #results {
+    display: flex;
+    font-size: 18px;
+    width: 800px;
+    padding: 50px 5px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #results div {
+    width: 30%;
   }
   #next {
-    width: 170px;
     margin: auto;
+    width: 100%;
   }
   #answerBtn {
     font-size: 18px;
     height: 80px;
-    width: 380px;
+    width: 100%;
+    margin: auto;
   }
   .correctBtn {
     background-color: #00bb0080;
   }
   .incorrectBtn {
     background-color: #d1000085;
-  }
-  #results {
-    font-size: 18px;
-    padding-top: 30px;
-    padding-bottom: 25px;
-    margin: auto;
-    width: 780px;
   }
 </style>

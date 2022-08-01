@@ -16,5 +16,17 @@
   },
   "main": "vite.config.js",
   "author": "k3ls33",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "description": "An educatioinal trivia game made with Vue 3 and Open Trivia DB.",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k3ls33/OpenQuiz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/k3ls33/OpenQuiz/issues"
+  },
+  "homepage": "https://github.com/k3ls33/OpenQuiz#readme"
 }
