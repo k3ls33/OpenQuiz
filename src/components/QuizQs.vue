@@ -62,7 +62,9 @@ export default {
 
       this.choices=[];
       this.inital = this.quizData[this.index].correct_answer;
-      this.choices.push([this.quizData[this.index].correct_answer, 1]);
+      this.janitor();
+
+      this.choices.push([this.scrubbed, 1]);
 
       for (var j = 0; j < 3; j++) {
         this.initial = this.quizData[this.index].incorrect_answers[j];
