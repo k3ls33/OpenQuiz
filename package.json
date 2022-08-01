@@ -1,10 +1,12 @@
 {
   "name": "vue-project",
+  "private": true,
   "version": "2.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --port 4173"
+    "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.2.37",
@@ -18,15 +20,5 @@
   "author": "k3ls33",
   "license": "GPL-3.0",
   "description": "An educatioinal trivia game made with Vue 3 and Open Trivia DB.",
-  "directories": {
-    "doc": "docs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/k3ls33/OpenQuiz.git"
-  },
-  "bugs": {
-    "url": "https://github.com/k3ls33/OpenQuiz/issues"
-  },
   "homepage": "https://github.com/k3ls33/OpenQuiz#readme"
 }
